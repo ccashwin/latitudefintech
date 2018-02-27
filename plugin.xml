@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-morphos-fingerprint-plugin"
+        version="0.0.1">
+          <name>morphos-fingerprint-plugin</name>
+          <description>Plugin to access external fingerprint scanning hardware device</description>
+          <license>MIT</license>
+          <keywords>Biometric scanner, Fingerprint scanner device,</keywords>
+          <repo></repo>
+          <issue></issue>
+
+          <platform name="android">
+            <js-module src="www/morphos-fingerprint-plugin.js" name="plugin">
+                <runs/>
+                <clobbers target="window.FingerPrintScannerPlugin"/>
+            </js-module>
+            <config-file target="res/xml/config.xml" parent="/*">
+                <feature name="FingerPrintScannerPlugin">
+                  <param name="android-package" value="com.morphos.morphosample.FingerPrintScannerPlugin"/>
+                  <param name="onload" value="true"/>
+                </feature>
+
+            </config-file>
+              <config-file target="res/xml/device_filter.xml" parent="/*">
+                  <resources>
+                	<usb-device vendor-id="1947" product-id="35" />
+			<usb-device vendor-id="1947" product-id="36" />  
+			<usb-device vendor-id="1947" product-id="38" />  
+			<usb-device vendor-id="1947" product-id="37" />  
+			<usb-device vendor-id="1947" product-id="71" />  
+			<usb-device vendor-id="1947" product-id="82" />  
+			<usb-device vendor-id="8797" product-id="1" />  
+			<usb-device vendor-id="8797" product-id="2" />  
+			<usb-device vendor-id="8797" product-id="3" />  
+			<usb-device vendor-id="8797" product-id="7" />  
+
+		</resources>
+
+              </config-file>
+              <config-file target="AndroidManifest.xml" parent="/manifest">
+                  <uses-feature android:name="android.hardware.usb.host" />
+
+                  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+                  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+                  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+              </config-file>
+
+                <source-file src="src/android/com/metacampus/scanner/FingerPrintScannerPlugin.java" target-dir="src/com/metacampus/scanner/"/>
+                <source-file src="src/android/libs/MorphoSmart_SDK_6.16.0.0.jar" target-dir="libs"/>
+                <source-file src="src/android/libs/armeabi/libMSO100.so" target-dir="libs/armeabi"/>
+                <source-file src="src/android/libs/armeabi/libNativeMorphoSmartSDK_6.16.0.0.so" target-dir="libs/armeabi"/>
+
+
+                <source-file src="src/android/raw/ansi378_0_10_3_windows.ansi378" target-dir="res/raw"/>
+                <source-file src="src/android/raw/ansi378_1_10_3_windows.ansi378" target-dir="res/raw"/>
+                <source-file src="src/android/raw/ansi378_2_10_3_windows.ansi378" target-dir="res/raw"/>
+                <source-file src="src/android/raw/finger_0_10_3.raw" target-dir="res/raw"/>
+                <source-file src="src/android/raw/finger_1_10_3.raw" target-dir="res/raw"/>
+                <source-file src="src/android/raw/finger_2_10_3.raw" target-dir="res/raw"/>
+                <source-file src="src/android/raw/raw2wsq_finger.raw" target-dir="res/raw"/>
+                <source-file src="src/android/raw/wsq2raw_finger.wsq" target-dir="res/raw"/>
+
+
+          </platform>
+        </plugin>
